@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<body>
+	 <canvas id="svs" width="700" height="400"></canvas>
+
+<div>Use Keyboard to move rectangle</div>
+<br />
+<button>&uarr;</button> Move Up
+<br />
+<button>&darr;</button> Move Down
+<br />
+<button>&larr;</button> Move Left
+<br />
+<button>&rarr;</button> Move Right
+
+
+
+<script>
+		var stage = document.getElementById('svs'), // Get the canvas element by Id
+        ctx = stage.getContext('2d'), // Canvas 2d rendering context
+        x = 10, //intial horizontal position of drawn rectangle
+        y = 10, //intial vertical position of drawn rectangle
+        wid = 40, //width of the drawn rectangle
+        hei = 40; //height of the drawn rectangle
+
+//Draw Rectangle function		
+function drawRect(x,y,wid,hei) {
+    ctx.fillStyle = 'red'; // Fill color of rectangle drawn
+    ctx.fillRect(x, y, wid, hei); //This will draw a rectangle of 20x20
+}
+
+drawRect(x,y,wid,hei); //Drawing rectangle on initial load
+
+//move rectangle inside the canvas using arrow keys
+window.onkeydown = function(event) {
+    var keyPr = event.keyCode; //Key code of key pressed
+  
+    if(keyPr === 39 && x<=645){ 
+        x = x+20; //right arrow add 20 from current
+    }
+    else if(keyPr === 37 && x>10){
+        x = x-20; //left arrow subtract 20 from current
+    }
+    else if(keyPr === 38 && y>10) {
+        y = y-20; //top arrow subtract 20 from current
+    }
+    else if(keyPr === 40 && y<=340){
+        y = y+20; //bottom arrow add 20 from current
+    }
+		
+  	/*clearing anything drawn on canvas
+     *comment this below do draw path */
+    ctx.clearRect(0,0, 800, 800);
+  
+  	//Drawing rectangle at new position
+    drawRect(x,y,wid,hei);
+};
+</script>
+<style>
+#svs {
+  border: 1px solid #333;
+  position: relative;
+  top: 100px;
+  left:330px;
+}
+</style>
+
+</body>
+</html>
